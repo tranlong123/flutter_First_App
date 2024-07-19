@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_project/styles/colors.dart';
 
 class CustomButton extends StatelessWidget {
   final Widget child; // Widget con của button, thường là Text hoặc Icon
@@ -14,13 +15,15 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.child,
     this.onTap,
-    this.enabled = true,
-    this.enabledColor = const Color(0xFFFFB900),
-    this.disabledColor = const Color(0xFFCECCC5),
+    // this.enabled = true,
+    this.enabledColor = bgColor,
+    this.disabledColor = btDisabledColor,
     this.borderRadius = 50.0,
     this.width = 200.0,
     this.height = 58.0,
-    this.textStyle,
+    this.textStyle, 
+    required this.enabled,
+    //  required TextStyle style,
   });
 
   @override
