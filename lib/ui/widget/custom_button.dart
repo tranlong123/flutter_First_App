@@ -15,14 +15,11 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.child,
     this.onTap,
-    // this.enabled = true,
     this.enabledColor = bgColor,
     this.disabledColor = btDisabledColor,
     this.borderRadius = 50.0,
-    this.width = 200.0,
-    this.height = 58.0,
     this.textStyle, 
-    required this.enabled,
+    required this.enabled, required this.width, required this.height,
     //  required TextStyle style,
   });
 
