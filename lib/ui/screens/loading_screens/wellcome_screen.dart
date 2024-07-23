@@ -14,8 +14,8 @@ class WelcomeScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
-    // Chuyển sang màn hình Auth sau 2 giây
-    Future.delayed(const Duration(seconds: 0), () {
+    // Chuyển sang màn hình Auth sau 5 giây
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacementNamed(context, '/auth');
     });
   }

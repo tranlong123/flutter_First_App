@@ -26,7 +26,7 @@ class AuthButtons extends StatelessWidget {
               width: AppDimensions.btAuthWidth,
               height: AppDimensions.btAuthHeight,
               enabled: true,
-              onTap: () => Navigator.pushReplacementNamed(context, '/signIn'),
+              onTap: () => Navigator.pushNamed(context, '/signIn'),
               textStyle: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: AppDimensions.customFontSize,
@@ -38,7 +38,7 @@ class AuthButtons extends StatelessWidget {
             CustomButton(
               width: AppDimensions.btAuthWidth,
               height: AppDimensions.btAuthHeight,
-              onTap: () => Navigator.pushReplacementNamed(context, '/signUp'),
+              onTap: () => Navigator.pushNamed(context, '/signUp'),
               enabled: true,
               textStyle: TextStyle(
                 fontFamily: 'Roboto',
