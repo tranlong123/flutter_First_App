@@ -12,6 +12,16 @@ class AppDimensions {
     aspectRatio = size.aspectRatio;
   }
 
+  //fontSize
+  static double get fontSize35 => screenHeight * 35 / 706;
+  static double get fontSize14 => screenHeight * 14 / 706;
+  static double get fontSize12 => screenHeight * 12 / 706;
+  static double get fontSize30 => screenHeight * 30 / 706;
+  static double get fontSize17 => screenHeight * 17 / 706;
+  static double get fontSize10 => screenHeight * 10 / 706;
+  static double get fontSize18 => screenHeight * 18 / 706;
+
+  //size box
   static double get customFontSize => screenHeight * 18 / 706;
   static double get btAuthWidth => screenHeight * 208 / 706;
   static double get btAuthHeight => screenHeight * 58 / 706;
@@ -27,8 +37,11 @@ class AppDimensions {
   static double get headerWidth => screenHeight * 311 / 706;
   static double get headerHeight => screenHeight * 113 / 706;
   static double get backIconSize => screenHeight * 23 / 706;
-  static double get fontSize35 => screenHeight * 35 / 706;
-  static double get fontSize14 => screenHeight * 14 / 706;
   static double get signInBodyHeight => screenHeight * 321 / 706;
-  static double get fontSize12 => screenHeight * 12 / 706;
+  static double get signUpBodyHeight => screenHeight * 614 / 706;
+  static double get phoneNumberInputHeight => screenHeight * 42 / 706;
+  static double get phoneNumberInputWidth => screenHeight * 197 / 706;
+  static double get addImageSize => screenHeight * 54 / 706;
+  static double get phoneIconSize => screenHeight * 22 / 706;
+
 }

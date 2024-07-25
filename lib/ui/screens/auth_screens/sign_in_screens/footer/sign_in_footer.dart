@@ -14,7 +14,7 @@ class SignInFooter extends StatelessWidget {
 
     return SizedBox(
       width: AppDimensions.screenWidth,
-      height: AppDimensions.screenHeight * 188 / 706,
+      height: AppDimensions.screenHeight * 190 / 706,
       child: Container(
           color: textInputBg,
           child: Column(

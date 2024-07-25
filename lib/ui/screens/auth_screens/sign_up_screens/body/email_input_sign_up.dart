@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:new_project/styles/dimensions.dart';
 import '../../../../widget/custom_input/custom_input.dart';
 
-class EmailInput extends StatelessWidget {
-  EmailInput({super.key});
+class EmailInputSignUp extends StatelessWidget {
+  EmailInputSignUp({super.key});
   final TextEditingController controller = TextEditingController();
 
   String? emailValidator(String? email) {

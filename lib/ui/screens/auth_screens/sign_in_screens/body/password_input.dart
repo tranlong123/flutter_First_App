@@ -11,7 +11,7 @@ class PasswordInput extends StatelessWidget {
       labelText: 'Password',
       hintText: 'Enter your password',
       validator: (value) {
-        return value == null || value.isEmpty ? 'Password cannot be empty' : null;
+        return value == null || value.isEmpty ? '' : null;
       },
       isPassword: true,
       controller: controller,

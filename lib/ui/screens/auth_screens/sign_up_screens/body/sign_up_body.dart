@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:new_project/ui/screens/auth_screens/sign_in_screens/body/sign_in_form.dart';
+import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/sign_up_form.dart';
 import '../../../../../styles/dimensions.dart';
 
-class SignInBody extends StatefulWidget {
-  const SignInBody({super.key});
+class SignUpBody extends StatefulWidget {
+  const SignUpBody({super.key});
 
   @override
-  SignInBodyState createState() => SignInBodyState();
+  SignUpBodyState createState() => SignUpBodyState();
 }
 
-class SignInBodyState extends State<SignInBody> {
+class SignUpBodyState extends State<SignUpBody> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isButtonEnabled = false;
 
@@ -23,7 +23,7 @@ class SignInBodyState extends State<SignInBody> {
   Widget build(BuildContext context) {
     AppDimensions.init(context);
 
-    return SignInForm(
+    return SignUpForm(
       formKey: _formKey,
       isButtonEnabled: _isButtonEnabled,
       onFormChanged: _updateButtonState,
@@ -31,7 +31,7 @@ class SignInBodyState extends State<SignInBody> {
         if (_formKey.currentState?.validate() ?? false) {
           // Xử lý sự kiện đăng nhập
           // ignore: avoid_print
-          print('Processing Sign In');
+          print('Processing Sign up');
         }
       },
     );
