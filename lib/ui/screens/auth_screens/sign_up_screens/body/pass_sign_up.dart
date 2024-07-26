@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../../../widget/custom_input.dart';
 
-class PasswordInput extends StatelessWidget {
-  PasswordInput({super.key});
-  final TextEditingController controller = TextEditingController();
+class PassSignUp extends StatelessWidget {
+  final TextEditingController controller;
+
+  const PassSignUp({super.key, required this.controller});
   String? passWordValidator(String? password) {
     return password == null || password.isEmpty ? '' : null;
   }

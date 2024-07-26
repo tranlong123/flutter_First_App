@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_project/styles/dimensions.dart';
-import '../../../../widget/custom_input/custom_input.dart';
+import '../../../../widget/custom_input.dart';
 
 class EmailInput extends StatelessWidget {
   EmailInput({super.key});
@@ -8,7 +8,7 @@ class EmailInput extends StatelessWidget {
 
   String? emailValidator(String? email) {
     if (email == null || email.isEmpty) {
-      return '';
+      return null;
     }
     final regex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
     return regex.hasMatch(email) ? null : 'Invalid email address';

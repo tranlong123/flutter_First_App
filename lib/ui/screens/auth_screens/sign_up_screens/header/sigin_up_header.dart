@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:new_project/styles/dimensions.dart';
 
-class SiginUpHeader extends StatelessWidget {
+class SiginUpHeader extends StatefulWidget {
   const SiginUpHeader({super.key});
 
+  @override
+  State<SiginUpHeader> createState() => _SiginUpHeaderState();
+}
+
+class _SiginUpHeaderState extends State<SiginUpHeader> {
   @override
   Widget build(BuildContext context) {
     AppDimensions.init(context);
@@ -13,14 +18,17 @@ class SiginUpHeader extends StatelessWidget {
           right: AppDimensions.screenHeight * 23 / 706,
           bottom: AppDimensions.screenHeight * 16 / 706),
       child: SizedBox(
-        // width: AppDimensions.screenHeight*228/706,
         height: AppDimensions.screenHeight * 35 / 706,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.pop(context); // Trở về màn hình trước đó
+                FocusScope.of(context).unfocus(); // Đóng bàn phím
+                Future.delayed(const Duration(milliseconds: 400), () {
+                  Navigator.pop(
+                      context); // Trở về màn hình trước đó sau khi bàn phím đã rút
+                });
               },
               child: Image.asset(
                 'assets/png/back-icon.png',

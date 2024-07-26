@@ -3,10 +3,8 @@ import 'package:new_project/styles/dimensions.dart';
 import '../../../../widget/custom_input.dart';
 
 class PhoneNumberInput extends StatelessWidget {
-  final TextEditingController controller;
-  final Function onFormChanged;
-  const PhoneNumberInput(
-      {super.key, required this.controller, required this.onFormChanged});
+   PhoneNumberInput({super.key});
+  final TextEditingController controller = TextEditingController();
   String? phoneValidator(String? phone) {
     if (phone == null || phone.isEmpty) {
       return '';
@@ -24,7 +22,7 @@ class PhoneNumberInput extends StatelessWidget {
       ),
       child: CustomInput(
         labelText: 'Phone Number',
-        hintText: 'Enter your Phone Number',
+        hintText: 'Phone Number',
         pngPath: 'assets/png/mobi-icon.png',
         validator: phoneValidator,
         isPassword: false,

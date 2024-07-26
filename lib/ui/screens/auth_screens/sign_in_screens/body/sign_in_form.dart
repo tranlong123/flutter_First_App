@@ -51,9 +51,12 @@ class SignInFormState extends State<SignInForm> {
                 ),
                 EmailInput(),
                 SizedBox(
-                  height: AppDimensions.screenHeight * 19 / 706,
+                  height: AppDimensions.screenHeight * 29 / 706,
                 ), // Thêm khoảng cách giữa các widget
                 PasswordInput(),
+                SizedBox(
+                  height: AppDimensions.screenHeight * 4 / 706,
+                ),
                 ForgotPassword(),
                 SizedBox(
                   height: AppDimensions.screenHeight * 33 / 706,

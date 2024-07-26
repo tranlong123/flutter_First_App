@@ -23,7 +23,11 @@ class SignInHeader extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pop(context); // Trở về màn hình trước đó
+                    FocusScope.of(context).unfocus(); // Đóng bàn phím
+                    Future.delayed(const Duration(milliseconds: 400), () {
+                      Navigator.pop(
+                          context); // Trở về màn hình trước đó sau khi bàn phím đã rút
+                    });
                   },
                   child: Image.asset(
                     'assets/png/back-icon.png',

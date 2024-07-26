@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_project/styles/dimensions.dart';
-import '../../../../widget/custom_input/custom_input.dart';
+import '../../../../widget/custom_input.dart';
 
 class EmailInputSignUp extends StatelessWidget {
   EmailInputSignUp({super.key});

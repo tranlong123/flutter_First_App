@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/add_avartar.dart';
 import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/avartar_text.dart';
+import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/email_input_sign_up.dart';
+import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/pass_sign_up.dart';
 import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/phone_number_input.dart';
+import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/re_pass.dart';
 import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/sign_up_button.dart';
+import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/check_box_row.dart';
+import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/user_name.dart';
 import '../../../../../styles/dimensions.dart';
+// ignore: depend_on_referenced_packages
+import 'package:image_picker/image_picker.dart';
 
 class SignUpForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final bool isButtonEnabled;
   final VoidCallback onFormChanged;
   final VoidCallback onSignInPressed;
+  final bool isChecked;
+  final ValueChanged<bool?> onCheckboxChanged;
+  final ValueChanged<XFile?> onImageChanged;
 
   const SignUpForm({
     super.key,
@@ -17,6 +27,9 @@ class SignUpForm extends StatefulWidget {
     required this.isButtonEnabled,
     required this.onFormChanged,
     required this.onSignInPressed,
+    required this.isChecked,
+    required this.onCheckboxChanged,
+    required this.onImageChanged,
   });
 
   @override
@@ -24,45 +37,73 @@ class SignUpForm extends StatefulWidget {
 }
 
 class SignUpFormState extends State<SignUpForm> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+  final TextEditingController rePassController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     AppDimensions.init(context);
 
-    return SizedBox(
+    return Container(
       width: AppDimensions.screenWidth,
-      height: AppDimensions.signUpBodyHeight,
-      child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-          color: Colors.white,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
         ),
-        child: Form(
-          key: widget.formKey,
-          onChanged: widget.onFormChanged,
-          child: Column(
-            children: [
-              const AvartarText(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  PhoneNumberInput(
-                    controller: _controller,
-                    onFormChanged: widget.onFormChanged,
-                  ),
-                  const AddAvartar()
-                ],
-              ),
-              SignUpButton(
-                isEnabled: widget.isButtonEnabled,
-                onPressed: widget.onSignInPressed,
-              ),
-            ],
-          ),
+        color: Colors.white,
+      ),
+      child: Form(
+        key: widget.formKey,
+        onChanged: widget.onFormChanged,
+        child: Column(
+          children: [
+            const AvartarText(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                PhoneNumberInput(),
+                AddAvatar(onImageSelected: widget.onImageChanged),
+              ],
+            ),
+            SizedBox(
+              height: AppDimensions.screenHeight * 26 / 706,
+            ),
+            EmailInputSignUp(),
+            SizedBox(
+              height: AppDimensions.screenHeight * 26 / 706,
+            ),
+            UserName(),
+            SizedBox(
+              height: AppDimensions.screenHeight * 26 / 706,
+            ),
+            PassSignUp(controller: passController),
+            SizedBox(
+              height: AppDimensions.screenHeight * 26 / 706,
+            ),
+            RePass(
+              passController: passController,
+              controller: rePassController,
+            ),
+            SizedBox(
+              height: AppDimensions.screenHeight * 26 / 706,
+            ),
+            CheckBoxRow(
+              isChecked: widget.isChecked,
+              onChanged: widget.onCheckboxChanged,
+            ),
+            SizedBox(
+              height: AppDimensions.screenHeight * 44 / 706,
+            ),
+            SignUpButton(
+              isEnabled: widget.isButtonEnabled,
+              onPressed: widget.onSignInPressed,
+            ),
+            SizedBox(
+              height: AppDimensions.screenHeight * 50 / 706,
+            ),
+          ],
         ),
       ),
     );

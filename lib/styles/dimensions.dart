@@ -20,6 +20,7 @@ class AppDimensions {
   static double get fontSize17 => screenHeight * 17 / 706;
   static double get fontSize10 => screenHeight * 10 / 706;
   static double get fontSize18 => screenHeight * 18 / 706;
+  static double get fontSize16 => screenHeight * 16 / 706;
 
   //size box
   static double get customFontSize => screenHeight * 18 / 706;
@@ -43,5 +44,6 @@ class AppDimensions {
   static double get phoneNumberInputWidth => screenHeight * 197 / 706;
   static double get addImageSize => screenHeight * 54 / 706;
   static double get phoneIconSize => screenHeight * 22 / 706;
+  static double get bottomSheetIconSize => screenHeight * 55 / 706;
 
 }

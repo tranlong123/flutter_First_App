@@ -3,7 +3,6 @@ import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/sign_up
 import 'package:new_project/ui/screens/auth_screens/sign_up_screens/header/sigin_up_header.dart';
 import '../../../../styles/colors.dart';
 
-
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
@@ -14,13 +13,10 @@ class SignUpScreen extends StatelessWidget {
         backgroundColor: bgColor,
         body: SingleChildScrollView(
           child: Column(
-            children: [
-              SiginUpHeader(),
-              SignUpBody()
-            ],
+            children: [SiginUpHeader(), SignUpBody()],
           ),
         ),
-      ), 
+      ),
     );
   }
 }

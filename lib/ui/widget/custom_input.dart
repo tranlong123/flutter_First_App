@@ -59,118 +59,98 @@ class CustomInputState extends State<CustomInput> {
     super.dispose();
   }
 
+  String? validateInput(String? value) {
+    if (value == null) {
+      return null; // Không có thông báo lỗi, giá trị hợp lệ (null)
+    } else if (value.isEmpty) {
+      return 'Please enter some text'; // Thông báo lỗi nếu giá trị trống
+    } else {
+      return null; // Giá trị hợp lệ
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     AppDimensions.init(context);
 
     return Padding(
-      padding: EdgeInsets.only(
-        right: AppDimensions.screenHeight * 30 / 706,
-        left: widget.paddingLeft ?? AppDimensions.screenHeight * 30 / 706,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: textInputBg,
-            ),
-            width: widget.width ?? double.infinity,
-            height: widget.height,
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    style: const TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 16,
-                    ),
-                    controller: controller,
-                    obscureText: widget.isPassword ? _isObscured : false,
-                    decoration: InputDecoration(
-                      labelText: widget.labelText,
-                      labelStyle: TextStyle(
-                        color: controller.text.isEmpty
-                            ? Colors.grey
-                            : (widget.validator(controller.text) != null
-                                ? widget.errorColor
-                                : bgColor),
-                        fontFamily: 'Roboto',
-                        fontWeight: FontWeight.w700,
-                      ),
-                      hintText: widget.hintText,
-                      fillColor: widget.fillColor,
-                      filled: true,
-                      contentPadding: EdgeInsets.only(
-                        left: AppDimensions.screenHeight * 20 / 706,
-                        top: AppDimensions.screenHeight * 14 / 706,
-                        bottom: AppDimensions.screenHeight * 14 / 706,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    inputFormatters: [
-                      // Giới hạn độ dài là 10 ký tự
-                      if (widget.maxLength != null)
-                        LengthLimitingTextInputFormatter(widget.maxLength),
-                    ],
+        padding: EdgeInsets.only(
+          right: AppDimensions.screenHeight * 30 / 706,
+          left: widget.paddingLeft ?? AppDimensions.screenHeight * 30 / 706,
+        ),
+        child: SizedBox(
+          width: widget.width,
+          height: widget.height,
+          child: Stack(children: [
+            TextFormField(
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontSize: AppDimensions.fontSize16,
+              ),
+              validator: widget.validator,
+              autovalidateMode: AutovalidateMode.disabled,
+              controller: controller,
+              obscureText: widget.isPassword ? _isObscured : false,
+              decoration: InputDecoration(
+                  labelText: widget.labelText,
+                  labelStyle: TextStyle(
+                    color: controller.text.isEmpty
+                        ? Colors.grey
+                        : (widget.validator(controller.text) != null
+                            ? widget.errorColor
+                            : bgColor),
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w700,
                   ),
-                ),
-                if (widget.pngPath != null || widget.isPassword)
-                  Padding(
+                  errorStyle: TextStyle(
+                    fontSize: AppDimensions.fontSize10,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w500,
+                    height: 0.1,
+                    ),
+                  hintText: widget.hintText,
+                  fillColor: widget.fillColor,
+                  filled: true,
+                  contentPadding: EdgeInsets.only(
+                    left: AppDimensions.screenHeight * 20 / 706,
+                    top: widget.height != null
+                        ? 0
+                        : AppDimensions.screenHeight * 14 / 706,
+                    bottom: widget.height != null
+                        ? 0
+                        : AppDimensions.screenHeight * 14 / 706,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  suffixIcon: Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: widget.isPassword || widget.pngPath != null
-                        ? IconButton(
-                            icon: Image.asset(
-                              widget.isPassword
-                                  ? (_isObscured
-                                      ? widget.eyeIcon!
-                                      : widget.eyeOffIcon!)
-                                  : widget.pngPath!,
-                              width: widget.iconSize ??
-                                  AppDimensions.textInputIconSize,
-                              height: widget.iconSize ??
-                                  AppDimensions.textInputIconSize,
-                            ),
-                            onPressed: () {
-                              if (widget.isPassword) {
-                                setState(() {
-                                  _isObscured = !_isObscured;
-                                });
-                              }
-                            },
-                          )
-                        : null,
-                  ),
+                    child: IconButton(
+                      icon: Image.asset(
+                        widget.isPassword
+                            ? (_isObscured ? widget.eyeIcon! : widget.eyeOffIcon!)
+                            : widget.pngPath!,
+                        width: widget.iconSize ?? AppDimensions.textInputIconSize,
+                        height:
+                            widget.iconSize ?? AppDimensions.textInputIconSize,
+                      ),
+                      onPressed: () {
+                        if (widget.isPassword) {
+                          setState(() {
+                            _isObscured = !_isObscured;
+                          });
+                        }
+                      },
+                    ),
+                  )),
+              inputFormatters: [
+                // Giới hạn độ dài là 10 ký tự
+                if (widget.maxLength != null)
+                  LengthLimitingTextInputFormatter(widget.maxLength),
               ],
             ),
-          ),
-          SizedBox(
-            height: AppDimensions.screenHeight * 10 / 706,
-            child: Container(
-              padding: EdgeInsets.only(
-                left: AppDimensions.screenHeight * 15 / 706,
-              ),
-              child: widget.validator(controller.text) != null
-                  ? Text(
-                      widget.validator(controller.text) ?? '',
-                      style: TextStyle(
-                        color: widget.errorColor,
-                        fontFamily: 'Roboto',
-                        fontSize: AppDimensions.fontSize10,
-                        fontWeight: FontWeight.w500,
-                        height: 11.72 / AppDimensions.fontSize10,
-                      ),
-                    )
-                  : const SizedBox
-                      .shrink(), // Đảm bảo không có kích thước khi không có lỗi
-            ),
-          )
-        ],
-      ),
-    );
+          ]),
+        ));
   }
 }
