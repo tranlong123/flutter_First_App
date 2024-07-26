@@ -35,18 +35,25 @@ class SignInHeader extends StatelessWidget {
                     height: AppDimensions.backIconSize,
                   ),
                 ),
-                Text(
-                  'Register',
-                  style: TextStyle(
-                    fontFamily: 'Roboto', // Font family
-                    fontSize: AppDimensions.fontSize14, // Font size
-                    fontWeight: FontWeight.w700, // Font weight
-                    height: 16.41 /
-                        AppDimensions
-                            .fontSize14, // Line height (converted to factor)
-                    textBaseline: TextBaseline.alphabetic,
-                  ),
-                )
+                GestureDetector(
+                    onTap: () {
+                      FocusScope.of(context).unfocus(); // Đóng bàn phím
+                      Future.delayed(const Duration(milliseconds: 400), () {
+                        Navigator.pushNamed(context, '/signUp'); 
+                      });
+                    },
+                    child: Text(
+                      'Register',
+                      style: TextStyle(
+                        fontFamily: 'Roboto', // Font family
+                        fontSize: AppDimensions.fontSize14, // Font size
+                        fontWeight: FontWeight.w700, // Font weight
+                        height: 16.41 /
+                            AppDimensions
+                                .fontSize14, // Line height (converted to factor)
+                        textBaseline: TextBaseline.alphabetic,
+                      ),
+                    ))
               ],
             ),
             Text(
