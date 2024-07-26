@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:image_picker/image_picker.dart';
+import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/custom_bottom_sheet.dart';
 // ignore: depend_on_referenced_packages
 import 'package:permission_handler/permission_handler.dart';
 import 'package:new_project/styles/dimensions.dart';
@@ -58,37 +59,15 @@ class AddAvatarState extends State<AddAvatar> {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return SizedBox(
-          height: AppDimensions.screenHeight * 149 / 706,
-          width: AppDimensions.screenWidth,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                  _pickImage(ImageSource.gallery);
-                },
-                child: Image.asset(
-                  'assets/png/image-plus.png',
-                  width: AppDimensions.bottomSheetIconSize,
-                  height: AppDimensions.bottomSheetIconSize,
-                ),
-              ),
-              SizedBox(width: AppDimensions.screenHeight * 99 / 706),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                  _pickImage(ImageSource.camera);
-                },
-                child: Image.asset(
-                  'assets/png/camera-plus.png',
-                  width: AppDimensions.bottomSheetIconSize,
-                  height: AppDimensions.bottomSheetIconSize,
-                ),
-              ),
-            ],
-          ),
+        return CustomBottomSheet(
+          onGalleryTap: () {
+            Navigator.pop(context);
+            _pickImage(ImageSource.gallery);
+          },
+          onCameraTap: () {
+            Navigator.pop(context);
+            _pickImage(ImageSource.camera);
+          },
         );
       },
     );
