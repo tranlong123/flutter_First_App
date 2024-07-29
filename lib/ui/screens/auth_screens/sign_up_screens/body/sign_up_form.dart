@@ -16,20 +16,28 @@ class SignUpForm extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final bool isButtonEnabled;
   final VoidCallback onFormChanged;
-  final VoidCallback onSignInPressed;
+  final VoidCallback onSignUpPressed;
   final bool isChecked;
   final ValueChanged<bool?> onCheckboxChanged;
   final ValueChanged<XFile?> onImageChanged;
-
+  final String? data;
+  final Function(String) onEmailChanged;
+  final Function(String) onPassChanged;
+  final String pass;
+  final String email
   const SignUpForm({
     super.key,
     required this.formKey,
     required this.isButtonEnabled,
     required this.onFormChanged,
-    required this.onSignInPressed,
+    required this.onSignUpPressed,
     required this.isChecked,
     required this.onCheckboxChanged,
     required this.onImageChanged,
+    this.data,
+    required this.onEmailChanged,
+    required this.onPassChanged,
+    required this.pass, required this.email,
   });
 
   @override
@@ -70,7 +78,10 @@ class SignUpFormState extends State<SignUpForm> {
             SizedBox(
               height: AppDimensions.screenHeight * 26 / 706,
             ),
-            EmailInputSignUp(),
+            EmailInputSignUp(
+              initialValue: widget.data,
+              onEmailChanged: widget.onEmailChanged,
+            ),
             SizedBox(
               height: AppDimensions.screenHeight * 26 / 706,
             ),
@@ -78,12 +89,14 @@ class SignUpFormState extends State<SignUpForm> {
             SizedBox(
               height: AppDimensions.screenHeight * 26 / 706,
             ),
-            PassSignUp(controller: passController),
+            PassSignUp(
+                controller: passController,
+                onPassChanged: widget.onPassChanged),
             SizedBox(
               height: AppDimensions.screenHeight * 26 / 706,
             ),
             RePass(
-              passController: passController,
+              passController: widget.pass,
               controller: rePassController,
             ),
             SizedBox(
@@ -98,7 +111,7 @@ class SignUpFormState extends State<SignUpForm> {
             ),
             SignUpButton(
               isEnabled: widget.isButtonEnabled,
-              onPressed: widget.onSignInPressed,
+              onPressed: widget.onSignUpPressed,
             ),
             SizedBox(
               height: AppDimensions.screenHeight * 50 / 706,

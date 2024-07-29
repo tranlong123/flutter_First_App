@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:new_project/styles/dimensions.dart';
 
 class SignInHeader extends StatelessWidget {
-  const SignInHeader({super.key});
+  final String email;
+
+  const SignInHeader({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +27,7 @@ class SignInHeader extends StatelessWidget {
                   onTap: () {
                     FocusScope.of(context).unfocus(); // Đóng bàn phím
                     Future.delayed(const Duration(milliseconds: 400), () {
-                      Navigator.pop(
-                          context); // Trở về màn hình trước đó sau khi bàn phím đã rút
+                      Navigator.pushNamed(context, '/auth');
                     });
                   },
                   child: Image.asset(
@@ -39,7 +40,8 @@ class SignInHeader extends StatelessWidget {
                     onTap: () {
                       FocusScope.of(context).unfocus(); // Đóng bàn phím
                       Future.delayed(const Duration(milliseconds: 400), () {
-                        Navigator.pushNamed(context, '/signUp'); 
+                        Navigator.pushNamed(context, '/signUp',
+                            arguments: email);
                       });
                     },
                     child: Text(

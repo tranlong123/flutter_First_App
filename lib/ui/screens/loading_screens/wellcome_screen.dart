@@ -12,16 +12,17 @@ class WelcomeScreen extends StatefulWidget {
 
 class WelcomeScreenState extends State<WelcomeScreen> {
   @override
-  void initState() {
-    super.initState();
-    // Chuyển sang màn hình Auth sau 5 giây
-    Future.delayed(const Duration(seconds: 5), () {
-      Navigator.pushReplacementNamed(context, '/auth');
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final Map<String, String>? args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, String>?;
+
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.pushNamed(
+        context,
+        '/signIn',
+        arguments: args,
+      );
+    });
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: bgColor,
       statusBarIconBrightness: Brightness.dark,

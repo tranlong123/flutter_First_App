@@ -11,13 +11,18 @@ class SignInForm extends StatefulWidget {
   final bool isButtonEnabled;
   final VoidCallback onFormChanged;
   final VoidCallback onSignInPressed;
-
+  final Function(String) onEmailChanged;
+  final String? emailRegister;
+  final String? pass;
   const SignInForm({
     super.key,
     required this.formKey,
     required this.isButtonEnabled,
     required this.onFormChanged,
     required this.onSignInPressed,
+    required this.onEmailChanged,
+    this.emailRegister,
+    this.pass,
   });
 
   @override
@@ -49,11 +54,13 @@ class SignInFormState extends State<SignInForm> {
                 SizedBox(
                   height: AppDimensions.screenHeight * 25 / 706,
                 ),
-                EmailInput(),
+                EmailInput(
+                    onEmailChanged: widget.onEmailChanged,
+                    emailRegister: widget.emailRegister),
                 SizedBox(
                   height: AppDimensions.screenHeight * 29 / 706,
                 ), // Thêm khoảng cách giữa các widget
-                PasswordInput(),
+                PasswordInput(pass:widget.pass),
                 SizedBox(
                   height: AppDimensions.screenHeight * 4 / 706,
                 ),

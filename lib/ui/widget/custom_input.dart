@@ -19,6 +19,8 @@ class CustomInput extends StatefulWidget {
   final double? paddingLeft;
   final double? iconSize;
   final int? maxLength;
+  final String? initialValue;
+  final Function(String)? onChangedValue;
 
   const CustomInput({
     super.key,
@@ -37,6 +39,8 @@ class CustomInput extends StatefulWidget {
     this.paddingLeft,
     this.iconSize,
     this.maxLength,
+    this.onChangedValue,
+    this.initialValue,
   });
 
   @override
@@ -50,7 +54,7 @@ class CustomInputState extends State<CustomInput> {
   @override
   void initState() {
     super.initState();
-    controller = widget.controller ?? TextEditingController();
+    controller = TextEditingController(text: widget.initialValue);
   }
 
   @override
@@ -83,10 +87,14 @@ class CustomInputState extends State<CustomInput> {
           height: widget.height,
           child: Stack(children: [
             TextFormField(
+              // initialValue: widget.initialValue,
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: AppDimensions.fontSize16,
               ),
+              onChanged: (value) {
+                widget.onChangedValue!(value);
+              },
               validator: widget.validator,
               autovalidateMode: AutovalidateMode.disabled,
               controller: controller,
@@ -107,7 +115,7 @@ class CustomInputState extends State<CustomInput> {
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.w500,
                     height: 0.1,
-                    ),
+                  ),
                   hintText: widget.hintText,
                   fillColor: widget.fillColor,
                   filled: true,
@@ -129,9 +137,12 @@ class CustomInputState extends State<CustomInput> {
                     child: IconButton(
                       icon: Image.asset(
                         widget.isPassword
-                            ? (_isObscured ? widget.eyeIcon! : widget.eyeOffIcon!)
+                            ? (_isObscured
+                                ? widget.eyeIcon!
+                                : widget.eyeOffIcon!)
                             : widget.pngPath!,
-                        width: widget.iconSize ?? AppDimensions.textInputIconSize,
+                        width:
+                            widget.iconSize ?? AppDimensions.textInputIconSize,
                         height:
                             widget.iconSize ?? AppDimensions.textInputIconSize,
                       ),

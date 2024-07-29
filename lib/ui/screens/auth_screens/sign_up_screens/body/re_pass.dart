@@ -3,7 +3,7 @@ import '../../../../widget/custom_input.dart';
 
 class RePass extends StatelessWidget {
   final TextEditingController controller;
-  final TextEditingController passController;
+  final String passController;
 
   const RePass(
       {super.key, required this.controller, required this.passController});
@@ -12,7 +12,7 @@ class RePass extends StatelessWidget {
     if (password == null || password.isEmpty) {
       return '';
     }
-    if (password != passController.text) {
+    if (password != passController) {
       return 'Mật khẩu không khớp';
     }
     return null;

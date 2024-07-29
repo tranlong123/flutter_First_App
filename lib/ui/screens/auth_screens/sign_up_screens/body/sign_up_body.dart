@@ -5,13 +5,31 @@ import 'package:new_project/ui/screens/auth_screens/sign_up_screens/body/sign_up
 import '../../../../../styles/dimensions.dart';
 
 class SignUpBody extends StatefulWidget {
-  const SignUpBody({super.key});
+  final String? data;
+
+  const SignUpBody({super.key, this.data});
 
   @override
   SignUpBodyState createState() => SignUpBodyState();
 }
 
 class SignUpBodyState extends State<SignUpBody> {
+  String _emailRegister = '';
+
+  void _updateEmail(String email) {
+    setState(() {
+      _emailRegister = email;
+    });
+  }
+
+  String _pass = '';
+
+  void _updatePass(String pass) {
+    setState(() {
+      _pass = pass;
+    });
+  }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isButtonEnabled = false;
   bool _isChecked = false;
@@ -19,7 +37,9 @@ class SignUpBodyState extends State<SignUpBody> {
 
   void _updateButtonState() {
     setState(() {
-      _isButtonEnabled = (_formKey.currentState?.validate() ?? false) && _isChecked && _image != null;
+      _isButtonEnabled = (_formKey.currentState?.validate() ?? false) &&
+          _isChecked &&
+          _image != null;
     });
   }
 
@@ -31,11 +51,16 @@ class SignUpBodyState extends State<SignUpBody> {
       formKey: _formKey,
       isButtonEnabled: _isButtonEnabled,
       isChecked: _isChecked,
+      data: widget.data,
+      pass: _pass,
+      email: _emailRegister,
+      onEmailChanged:_updateEmail,
+      onPassChanged: _updatePass,
       onFormChanged: _updateButtonState,
-      onSignInPressed: () {
+      onSignUpPressed: () {
         if (_formKey.currentState?.validate() ?? false) {
-          // ignore: avoid_print
-          print('Processing Sign Up');
+          Navigator.pushNamed(context, '/WelcomeScreen',
+              arguments: {'emailRegister': _emailRegister, 'pass': _pass});
         }
       },
       onCheckboxChanged: (bool? value) {

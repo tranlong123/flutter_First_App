@@ -3,7 +3,11 @@ import 'package:new_project/styles/dimensions.dart';
 import '../../../../widget/custom_input.dart';
 
 class EmailInputSignUp extends StatelessWidget {
-  EmailInputSignUp({super.key});
+  final String? initialValue;
+  final Function(String) onEmailChanged;
+
+  EmailInputSignUp(
+      {super.key, this.initialValue, required this.onEmailChanged});
   final TextEditingController controller = TextEditingController();
 
   String? emailValidator(String? email) {
@@ -21,9 +25,11 @@ class EmailInputSignUp extends StatelessWidget {
       labelText: 'Email',
       hintText: 'Enter your email',
       pngPath: 'assets/png/email-outline.png',
+      initialValue: initialValue,
       validator: emailValidator,
       isPassword: false,
       controller: controller,
+      onChangedValue: onEmailChanged,
     );
   }
 }

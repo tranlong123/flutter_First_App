@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../../../../widget/custom_input.dart';
 
 class PasswordInput extends StatelessWidget {
-  PasswordInput({super.key});
+  final String? pass;
+
+  PasswordInput({super.key, this.pass});
   final TextEditingController controller = TextEditingController();
   String? passWordValidator(String? password) {
     return password == null || password.isEmpty ? '' : null;
@@ -16,6 +18,7 @@ class PasswordInput extends StatelessWidget {
       validator: passWordValidator,
       isPassword: true,
       controller: controller,
+      initialValue: pass,
     );
   }
 }
