@@ -24,7 +24,7 @@ class SignUpForm extends StatefulWidget {
   final Function(String) onEmailChanged;
   final Function(String) onPassChanged;
   final String pass;
-  final String email
+  final String email;
   const SignUpForm({
     super.key,
     required this.formKey,
